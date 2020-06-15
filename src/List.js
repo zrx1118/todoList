@@ -13,7 +13,7 @@ class List extends Component{
         return (
             <ul>
                 {
-                    list.map((item,index)=>{
+                    list.map((item,index) => {
                         return (<Item 
                             item={item}
                             toggleItem={toggleItem}

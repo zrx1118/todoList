@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css'
 import Header from './Header'
-import Body from './Body'
+import Input from './Input'
 import List from './List'
 
 
@@ -9,21 +9,10 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            list: [{
-                    name: '小雪1',
-                    checked: false,
-                    id: 1
-                },
-                {
-                    name: '小雪2',
-                    checked: false,
-                    id: 2
-                },
-                {
-                    name: '小雪3',
-                    checked: true,
-                    id: 3
-                }
+            list: [
+                { name: '洗脸', checked: false, id: 1 },
+                { name: '刷牙', checked: false, id: 2 },
+                { name: '换衣服', checked: true, id: 3 }
             ]
         }
     }
@@ -66,20 +55,15 @@ class App extends Component {
     }
     render() {
         let number = this.state.list.filter(item => { return !item.checked }).length
-        return ( <
-            div >
-            <
-            Header name = "yuzhi"
-            number = { number }
-            /> <
-            Body addTodo = { this.addTodo.bind(this) }
-            /> <
-            List list = { this.state.list }
-            toggleItem = { this.toggleItem.bind(this) }
-            del = { this.del.bind(this) }
-            edit = { this.edit.bind(this) }
-            /> < /
-            div >
+        return ( <div>
+                <Header name = "Silvia" number = { number }/>
+                <Input addTodo = { this.addTodo.bind(this) }/>
+                <List
+                    list = { this.state.list }
+                    toggleItem = { this.toggleItem.bind(this) }
+                    del = { this.del.bind(this) }
+                    edit = { this.edit.bind(this) }/>
+            </div>
         );
     }
 }

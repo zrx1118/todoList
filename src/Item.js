@@ -1,24 +1,23 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 
 class Item extends Component{
     constructor(){
         super()
-        this.state={
-            readyCore:true
+        this.state = {
+            readyCore: true
         }
     }
-    setCore(){
-        this.state.readyCore=!this.state.readyCore
+    setCore() {
         this.setState({
-            readyCore:this.state.readyCore
+            readyCore: !this.state.readyCore
         })
     }
-    readOnly(){
+    readOnly() {
         const{
             del,
             toggleItem,
             item
-        }=this.props
+        } = this.props
         return(
             <li key={item.id}>
                 <input 
@@ -26,11 +25,8 @@ class Item extends Component{
                     checked={item.checked}
                     onChange={()=>{
                         toggleItem(item.id)
-                    }}
-                    />
-                <span 
-                    onDoubleClick={this.setCore.bind(this)}
-                    >
+                    }}/>
+                <span onDoubleClick={this.setCore.bind(this)}>
                     {item.name}
                 </span>
                 <button
@@ -41,13 +37,13 @@ class Item extends Component{
             </li>
         )
     }
-    editMode(){
+    editMode() {
         const{
             del,
             toggleItem,
             item,
             edit
-        }=this.props
+        } = this.props
         return(
             <li>
                 <input 
@@ -55,20 +51,18 @@ class Item extends Component{
                     checked={item.checked}
                     onChange={()=>{
                         toggleItem(item.id)
-                    }}
-                    />
+                    }}/>
                 <input type="text" 
                     defaultValue={item.name}
                     onKeyUp={(e)=>{
-                        var val=e.target.value;
-                        if(e.keyCode==13 && val){
-                            edit(val,item.id)
+                        var val = e.target.value;
+                        if(e.keyCode === 13 && val) {
+                            edit(val, item.id)
                             this.setCore()
                         }
-                    }}
-                    />
+                    }}/>
                 <button
-                    onClick={()=>{
+                    onClick={() => {
                         del(item.id)
                     }}
                 > X </button>
@@ -77,7 +71,7 @@ class Item extends Component{
     }
     render(){
         return (
-            this.state.readyCore?this.readOnly():this.editMode()
+            this.state.readyCore ? this.readOnly() : this.editMode()
         )
     }
 }
